@@ -13,9 +13,9 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path="/auth" component={LoginRegisterPage} />
-      <Route path="/events" component={EventsPage} />
-      <Route path="/event/:eventId" component={EventPage} />
+      <Route path="auth" component={LoginRegisterPage} />
+      <Route path="events" component={EventsPage} />
+      <Route path="event/:eventId" component={EventPage} />
     </Route>
   </Router>,
   document.getElementById('root')
