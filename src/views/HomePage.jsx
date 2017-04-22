@@ -21,22 +21,22 @@ class HomePage extends Component {
                 <br />
                 
                 <div className="w3-content">
-                    <h2>Event Card Small</h2>
+                    <div className="w3-container"><h2>Event Card Small</h2></div>
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event S 1" id="s1" />
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event S 2" id="s2" />
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event S 3" id="s3" />
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
-                    <h2>Event Card Medium</h2>
+                                    title="Event S 4" id="s4" />
+                    <div className="w3-container"><h2>Event Card Medium</h2></div>
                     <EventCardMedium poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event M 1" id="s1" />
                     <EventCardMedium poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event M 2" id="m2" />
                     <EventCardMedium poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Lorem Ipsum" />
+                                    title="Event M 3" id="m3" />
                 </div>
                 
             </div>
