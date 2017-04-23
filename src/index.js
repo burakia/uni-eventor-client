@@ -8,6 +8,7 @@ import HomePage from './views/HomePage.jsx';
 import LoginRegisterPage from './views/LoginRegisterPage.jsx';
 import EventsPage from './views/EventsPage.jsx';
 import EventPage from './views/EventPage.jsx';
+import Profile from './views/Profile.jsx';
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Route path="auth" component={LoginRegisterPage} />
       <Route path="events" component={EventsPage} />
       <Route path="event/:eventId" component={EventPage} />
+	  <Route path="profile" component={Profile} />
     </Route>
   </Router>,
   document.getElementById('root')
