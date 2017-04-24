@@ -10,15 +10,14 @@ class Interests extends Component {
     }
 
     render() {
-        var s = {
-            width: '50px'
-        };
         return (
-			<div class="w3-card-2 w3-round w3-white w3-hide-small">
-				<div class="w3-container">
-					<h4 class="w3-center">Interests</h4>
-				</div>
-			</div>
+            <div className="w3-padding">
+                <div className="w3-card-2 w3-round w3-white w3-hide-small">
+                    <div className="w3-container">
+                        <h4 className="w3-center">Interests</h4>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
