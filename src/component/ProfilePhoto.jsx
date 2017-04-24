@@ -14,15 +14,15 @@ class ProfilePhoto extends Component {
             width: '50px'
         };
         return (
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container">
-					<h4 class="w3-center">ProfilePhoto</h4>
-                        <p class="w3-center">
-                            <img src="/details/img/myImage.png" />
+			<div className="w3-card-2 w3-round w3-white">
+				<div className="w3-container">
+					<h4 className="w3-center">ProfilePhoto</h4>
+                        <p className="w3-center">
+                            <img src="https://igx.4sqi.net/img/user/original/24201968-2QZB3PZRUG25MXZK.jpg"  width="150px" height="150px"/>
                         </p>
                         <hr></hr>
-                         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>.Job </p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>City</p>
+                         <p><i className="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>.Job </p>
+                    <p><i className="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>City</p>
                  </div>
 			</div>
         );
