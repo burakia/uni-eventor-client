@@ -17,8 +17,13 @@ class ProfilePhoto extends Component {
 			<div class="w3-card-2 w3-round w3-white">
 				<div class="w3-container">
 					<h4 class="w3-center">ProfilePhoto</h4>
-					
-				</div>
+                        <p class="w3-center">
+                            <img src="/details/img/myImage.png" />
+                        </p>
+                        <hr></hr>
+                         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>.Job </p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>City</p>
+                 </div>
 			</div>
         );
     }
