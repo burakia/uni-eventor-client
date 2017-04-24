@@ -17,7 +17,7 @@ ReactDOM.render(
       <Route path="auth" component={LoginRegisterPage} />
       <Route path="events" component={EventsPage} />
       <Route path="event/:eventId" component={EventPage} />
-	  <Route path="profile" component={Profile} />
+	    <Route path="profile/:userId" component={Profile} />
     </Route>
   </Router>,
   document.getElementById('root')

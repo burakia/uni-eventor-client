@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Tag from './Tag.jsx';
 import '../css/w3.css';
 
 
@@ -11,10 +12,13 @@ class Interests extends Component {
 
     render() {
         return (
-            <div className="w3-padding">
-                <div className="w3-card-2 w3-round w3-white w3-hide-small">
-                    <div className="w3-container">
-                        <h4 className="w3-center">Interests</h4>
+            <div className="w3-hide-small">
+                <div className="w3-container">
+                    <p className="w3-center">Interests</p>
+                    <div className="w3-section">
+                        {this.props.data.map(item => {
+                            return <Tag key={item.id} cssClass="w3-teal">{item.text}</Tag>
+                        })}
                     </div>
                 </div>
             </div>
