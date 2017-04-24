@@ -3,17 +3,12 @@ import '../css/w3.css';
 
 
 class ProfilePhoto extends Component {
-    submitHandler(e) {
-        e.preventDefault();
-        alert('Register');
-        // Fill User Information from api 
-    }
-
     render() {
-        var s = {
-            width: '50px'
+        var imgStyle = {
+            width: '100%'
         };
         return (
+<<<<<<< HEAD
 			<div className="w3-card-2 w3-round w3-white">
 				<div className="w3-container">
 					<h4 className="w3-center">ProfilePhoto</h4>
@@ -25,6 +20,16 @@ class ProfilePhoto extends Component {
                     <p><i className="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>City</p>
                  </div>
 			</div>
+=======
+            <div className="w3-padding">
+                <div className="w3-card-4 w3-round w3-white">
+                    <img style={imgStyle} src={this.props.image} alt={this.props.imgAlt} />
+                    <div className="w3-container">
+                        <h4 className="w3-center">{this.props.fullname}</h4>
+                    </div>
+                </div>
+            </div>
+>>>>>>> origin/master
         );
     }
 }
