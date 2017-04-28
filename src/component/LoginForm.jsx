@@ -4,7 +4,7 @@ import '../css/w3.css';
 class LoginForm extends Component {
     submitHandler(e) {
         e.preventDefault();
-        alert('Login');
+        alert('login');
         // Post login info to api here...
     }
 
@@ -35,7 +35,7 @@ class LoginForm extends Component {
                             </div>
 
                             <div className="w3-section w3-container">
-                                <input class="w3-check w3-margin-top" type="checkbox" /> Remember me
+                                <input className="w3-check w3-margin-top" type="checkbox" /> Remember me
                             </div>
 
                             <p className="w3-center">
