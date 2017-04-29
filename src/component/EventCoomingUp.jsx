@@ -19,7 +19,7 @@ class EventCoomingUp extends Component {
                     </Link>
                     <p><strong>Sakarya Üniversitesi</strong></p>
                     <p>Cuma 15:00</p>
-                    <p><button onclick="document.getElementById('idEvent').style.display='block'" className="w3-btn w3-btn-block w3-theme-l4">Etkinliğe Git</button></p>
+                    <p><button onClick="document.getElementById('idEvent').style.display='block'" className="w3-btn w3-btn-block w3-theme-l4">Etkinliğe Git</button></p>
                 </div>
             </div>
         );

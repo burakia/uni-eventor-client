@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import EventCardProfile from '../component/EventCardProfile.jsx';
-import EventCardSmall from '../component/EventCardSmall.jsx';
 import EventCoomingUp from '../component/EventCoomingUp.jsx';
 import '../css/w3.css';
 import '../css/w3-theme-black.css';
 
 class EventPage extends Component {
-   handleClick = function(evnt, cityname) {
-    alert('this is:', cityname);
-    
-  }
+   handleClick =(e,cityName)=>{
+      // e burada click icin bildigimiz event nesnesi
+      alert('adsf');
+    }
     render() {
         
         return (
@@ -46,10 +45,10 @@ class EventPage extends Component {
                                            
                                                 <h4 >Saü Bilişim Günleri</h4>
                                                 <div className="w3-row">
-                                                    <a href="javascript:void(0)" onClick={(e) => this.handleClick(e,'Icerik')}>
+                                                    <a href="javascript:void(0)" onClick={(e) => this.handleClick.bind(this,'Icerik')}>
                                                         <div className="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">İçerik</div>
                                                     </a>
-                                                    <a href="javascript:void(0)" onClick={(e) => this.handleClick(e,'Harita')}>
+                                                    <a href="javascript:void(0)" onClick={(e) => this.handleClick.bind(this,'Harita')}>
                                                         <div className="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Harita</div>
                                                     </a>
                                                 </div>
