@@ -10,6 +10,24 @@ class HomePage extends Component {
             width: '%100',
             height: '400px'
         };
+        var interests = [
+            {
+                id: 'id1',
+                text: 'interest1'
+            },
+            {
+                id: 'id2',
+                text: 'interest2'
+            },
+            {
+                id: 'id3',
+                text: 'interest3'
+            },
+            {
+                id: 'id4',
+                text: 'interest4'
+            }
+        ];
         return (
             <div>
                 <div id="slider" className="w3-gray" style={sliderStyle}>
@@ -19,9 +37,16 @@ class HomePage extends Component {
                 </div>
                 <SearchBar />
                 <br />
+                <select>
+                       {interests.map(function(object , i ){
+                       return <option key={object.id} value={object.text}>{object.text}</option>
+                                         
+                     })} 
+                </select>
                 
                 <div className="w3-content">
                     <div className="w3-container"><h2>Event Card Small</h2></div>
+                    
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
                                     title="Event S 1" id="s1" />
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
