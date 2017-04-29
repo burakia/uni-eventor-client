@@ -3,6 +3,7 @@ import EventCardProfile from '../component/EventCardProfile.jsx';
 import EventCardSmall from '../component/EventCardSmall.jsx';
 import EventCoomingUp from '../component/EventCoomingUp.jsx';
 import '../css/w3.css';
+import '../css/w3-theme-black.css';
 
 class EventPage extends Component {
    handleClick = function(evnt, cityname) {
@@ -60,7 +61,7 @@ class EventPage extends Component {
                  </div>
                  <div className="w3-col m2">
                     <EventCoomingUp poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
-                                    title="Event S 1" id="s1" />
+                                    title="Event S 1" id="s2" />
                      <div className="w3-card-2 w3-round w3-white w3-center">
                         <div className="w3-container">
                             <p>Bu Etkinliğe Gidenler</p>
