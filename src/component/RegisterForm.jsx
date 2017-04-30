@@ -4,7 +4,30 @@ import '../css/w3.css';
 class RegisterForm extends Component {
     submitHandler(e) {
         e.preventDefault();
-        alert('Register');
+        
+        var RegisterData = {
+            "UserName": this.refs.userName.value,
+            "Password": this.refs.password.value,
+            "ConfirmPassword": this.refs.confirmPassword.value,
+            "Email":this.refs.email.value,
+            "Name": this.refs.first.value,
+            "Surname": this.refs.last.value,
+            "DepartmentId": 1
+        }
+        var array={};
+         var xhr = new XMLHttpRequest();
+         xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var array = JSON.parse(xhr.responseText);
+                }
+                
+       };
+        xhr.open('POST', 'http://unieventorapi.azurewebsites.net/api/Account/Register');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(RegisterData);
+        alert(RegisterData.UserName);
+       
+    
         // Post register info to api here...
     }
 
@@ -24,14 +47,14 @@ class RegisterForm extends Component {
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="first" type="text" placeholder="First Name" />
+                                        <input className="w3-input w3-border"  ref="first" name="first" type="text" placeholder="First Name" />
                                     </div>
                                 </div>
 
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="last" type="text" placeholder="Last Name" />
+                                        <input className="w3-input w3-border" ref="last" name="last" type="text" placeholder="Last Name" />
                                     </div>
                                 </div>
                             </div>
@@ -39,14 +62,14 @@ class RegisterForm extends Component {
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-envelope-o"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" name="email" type="text" placeholder="Email" />
+                                    <input className="w3-input w3-border" ref="email" name="email" type="text" placeholder="Email" />
                                 </div>
                             </div>
 
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" name="phone" type="text" placeholder="User Name" />
+                                    <input className="w3-input w3-border" ref="userName" name="phone" type="text" placeholder="User Name" />
                                 </div>
                             </div>
 
@@ -54,14 +77,14 @@ class RegisterForm extends Component {
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="phone" type="text" placeholder="Password" />
+                                        <input className="w3-input w3-border" ref="password" name="password" type="text" placeholder="Password" />
                                     </div>
                                 </div>
 
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="message" type="text" placeholder="Confirm Password" />
+                                        <input className="w3-input w3-border" ref="confirmPassword" name="confirmPassword" type="text" placeholder="Confirm Password" />
                                     </div>
                                 </div>
                             </div>
