@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/w3.css';
+import * as AppRequest from "../App.Request.js"
 
 class RegisterForm extends Component {
     submitHandler(e) {
@@ -14,20 +15,14 @@ class RegisterForm extends Component {
             "Surname": this.refs.last.value,
             "DepartmentId": 1
         }
-        var array={};
-         var xhr = new XMLHttpRequest();
-         xhr.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    var array = JSON.parse(xhr.responseText);
-                }
-                
-       };
-        xhr.open('POST', 'http://unieventorapi.azurewebsites.net/api/Account/Register');
+    AppRequest.makeApiRequest('POST', 'api/Account/Register', RegisterData,()=>{
+            alert('Register Succses');
+        },()=>{
+            alert('Register Failure');
+        }, (xhr) => {
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(RegisterData);
-        alert(RegisterData.UserName);
+    });
        
-    
         // Post register info to api here...
     }
 
