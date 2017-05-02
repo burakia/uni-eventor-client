@@ -1,15 +1,17 @@
+import { baseUrl, makeApiRequest } from './App.Request';
+
 export var token = {};
 
-export function login(username, password){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            token = JSON.parse(xhr.responseText);
-        }
+export function login(username, password, onsuccess, onfailure) {
+    debugger;
+    var userData = 'grant_type=password&username=' + username + '&password=' + password;
+    var loginSuccess = function (data) {
+        token = data;
+        onsuccess();
     };
-    xhr.open('POST', 'http://unieventorapi.azurewebsites.net/token');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('grant_type=password&username=' + username + '&password=' + password);
+    makeApiRequest('POST', '/token', userData, loginSuccess, onfailure, (xhr) => {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    });
 }
 
 export function authorize(xhr) {
@@ -17,6 +19,6 @@ export function authorize(xhr) {
         xhr.withCredentials = true;
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.setRequestHeader('Authorization', 'Bearer ' + token.access_token);
-        xhr.send();
     }
+    return xhr;
 }

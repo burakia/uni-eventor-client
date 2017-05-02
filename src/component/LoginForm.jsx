@@ -1,11 +1,45 @@
 import React, { Component } from 'react';
+import * as AuthModule from '../App.Auth';
+import { withRouter } from 'react-router';
 import '../css/w3.css';
 
 class LoginForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: ''
+        };
+    }
+
     submitHandler(e) {
         e.preventDefault();
-        alert('login');
-        // Post login info to api here...
+        if (this.state.username == '' || this.state.password == '') {
+            alert('Enter username and password');
+        }
+        else {
+            AuthModule.login(this.state.username, this.state.password, () => {
+                this.props.router.push('/');
+            }, () => {
+                alert('login failure');
+            });
+        }
+    }
+    
+    handleUserNameChange(event) {
+        var userName = event.target.value;
+        this.setState(prevState => ({
+            username: userName,
+            password: prevState.password
+        }));
+    }
+    
+    handlePasswordChange(event) {
+        var password = event.target.value;
+        this.setState(prevState => ({
+            username: prevState.username,
+            password: password
+        }));
     }
 
     render() {
@@ -23,14 +57,14 @@ class LoginForm extends Component {
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" name="email" type="text" placeholder="User Name" />
+                                    <input onChange={this.handleUserNameChange.bind(this)} className="w3-input w3-border" name="email" type="text" placeholder="User Name" />
                                 </div>
                             </div>
 
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" name="phone" type="text" placeholder="Password" />
+                                    <input onChange={this.handlePasswordChange.bind(this)} className="w3-input w3-border" name="phone" type="text" placeholder="Password" />
                                 </div>
                             </div>
 
@@ -50,4 +84,4 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
