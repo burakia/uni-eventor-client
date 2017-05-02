@@ -1,29 +1,114 @@
 import React, { Component } from 'react';
+import { makeApiRequest } from '../App.Request';
 import '../css/w3.css';
 import * as AppRequest from "../App.Request.js"
 
 class RegisterForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            name: '',
+            surname: '',
+            departmentId: -1
+        };
+    }
+
     submitHandler(e) {
         e.preventDefault();
-        
-        var RegisterData = {
-            "UserName": this.refs.userName.value,
-            "Password": this.refs.password.value,
-            "ConfirmPassword": this.refs.confirmPassword.value,
-            "Email":this.refs.email.value,
-            "Name": this.refs.first.value,
-            "Surname": this.refs.last.value,
-            "DepartmentId": 1
-        }
-    AppRequest.makeApiRequest('POST', 'api/Account/Register', RegisterData,()=>{
-            alert('Register Succses');
-        },()=>{
-            alert('Register Failure');
-        }, (xhr) => {
-        xhr.setRequestHeader('Content-Type', 'application/json');
-    });
-       
-        // Post register info to api here...
+
+        makeApiRequest('POST', '/api/Account/Register', this.state, (data) => {
+            alert('success: ' + data);
+        }, () => {
+            alert('error')
+        });
+    }
+
+    usernameChange(event) {
+        this.setState(prevState => ({
+            userName: event.target.value,
+            email: prevState.email,
+            password: prevState.password,
+            confirmPassword: prevState.confirmPassword,
+            name: prevState.name,
+            surname: prevState.surname,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    emailChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: event.target.value,
+            password: prevState.password,
+            confirmPassword: prevState.confirmPassword,
+            name: prevState.name,
+            surname: prevState.surname,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    passwordChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: prevState.email,
+            password: event.target.value,
+            confirmPassword: prevState.confirmPassword,
+            name: prevState.name,
+            surname: prevState.surname,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    confirmPasswordChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: prevState.email,
+            password: prevState.password,
+            confirmPassword: event.target.value,
+            name: prevState.name,
+            surname: prevState.surname,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    nameChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: prevState.email,
+            password: prevState.password,
+            confirmPassword: prevState.confirmPassword,
+            name: event.target.value,
+            surname: prevState.surname,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    surnameChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: prevState.email,
+            password: prevState.password,
+            confirmPassword: prevState.confirmPassword,
+            name: prevState.name,
+            surname: event.target.value,
+            departmentId: prevState.departmentId
+        }));
+    }
+
+    departmentChange(event) {
+        this.setState(prevState => ({
+            userName: prevState.userName,
+            email: prevState.email,
+            password: prevState.password,
+            confirmPassword: prevState.confirmPassword,
+            name: prevState.name,
+            surname: prevState.surname,
+            departmentId: event.target.value
+        }));
     }
 
     render() {
@@ -42,14 +127,14 @@ class RegisterForm extends Component {
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border"  ref="first" name="first" type="text" placeholder="First Name" />
+                                        <input className="w3-input w3-border" name="first" type="text" placeholder="First Name" onChange={this.nameChange.bind(this)} />
                                     </div>
                                 </div>
 
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" ref="last" name="last" type="text" placeholder="Last Name" />
+                                        <input className="w3-input w3-border" name="last" type="text" placeholder="Last Name" onChange={this.surnameChange.bind(this)} />
                                     </div>
                                 </div>
                             </div>
@@ -57,14 +142,14 @@ class RegisterForm extends Component {
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-envelope-o"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" ref="email" name="email" type="text" placeholder="Email" />
+                                    <input className="w3-input w3-border" name="email" type="text" placeholder="Email" onChange={this.emailChange.bind(this)} />
                                 </div>
                             </div>
 
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
                                 <div className="w3-rest">
-                                    <input className="w3-input w3-border" ref="userName" name="phone" type="text" placeholder="User Name" />
+                                    <input className="w3-input w3-border" name="username" type="text" placeholder="User Name" onChange={this.usernameChange.bind(this)} />
                                 </div>
                             </div>
 
@@ -72,15 +157,42 @@ class RegisterForm extends Component {
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" ref="password" name="password" type="text" placeholder="Password" />
+                                        <input className="w3-input w3-border" name="password" type="text" placeholder="Password" onChange={this.passwordChange.bind(this)} />
                                     </div>
                                 </div>
 
                                 <div className="w3-half w3-container">
                                     <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
                                     <div className="w3-rest">
-                                        <input className="w3-input w3-border" ref="confirmPassword" name="confirmPassword" type="text" placeholder="Confirm Password" />
+                                        <input className="w3-input w3-border" name="confirmPassword" type="text" placeholder="Confirm Password" onChange={this.confirmPasswordChange.bind(this)} />
                                     </div>
+                                </div>
+                            </div>
+
+                            <div className="w3-row w3-section">
+                                <div className="w3-half w3-container">
+                                    <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
+                                    <div className="w3-rest">
+                                        <input className="w3-input w3-border" name="password" type="text" placeholder="Password" onChange={this.passwordChange.bind(this)} />
+                                    </div>
+                                </div>
+
+                                <div className="w3-half w3-container">
+                                    <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
+                                    <div className="w3-rest">
+                                        <input className="w3-input w3-border" name="confirmPassword" type="text" placeholder="Confirm Password" onChange={this.confirmPasswordChange.bind(this)} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="w3-row w3-section w3-container">
+                                <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
+                                <div className="w3-rest">
+                                    <select className="w3-select w3-border w3-text-blue-gray" name="Department">
+                                        <option value="" disabled selected>Choose your department</option>
+                                        <option value="1">Bilgisayar Muhendisligi Bolumu</option>
+                                        <option value="2">Bilgisayar Muhendisligi Bolumu</option>
+                                    </select>
                                 </div>
                             </div>
 

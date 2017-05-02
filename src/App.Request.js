@@ -1,7 +1,7 @@
 import * as AuthModule from './App.Auth';
 
 const parseError = (param) => {
-    if (typeof (param) == typeof ('')) {
+    if (typeof (param) === typeof ('')) {
         return param;
     }
     else if (param.error) {

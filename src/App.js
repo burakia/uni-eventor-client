@@ -36,7 +36,6 @@ class App extends Component {
                         <IndexLink className="w3-bar-item w3-button w3-hover-teal" to="/">Uni Eventor</IndexLink>
                         <IndexLink activeClassName="w3-white" className="w3-bar-item w3-button w3-hover-white" to="/">Home</IndexLink>
                         <Link activeClassName="w3-white" className="w3-bar-item w3-button w3-hover-white" to="/events">Events</Link>
-                        <Link activeClassName="w3-white" className="w3-bar-item w3-button w3-hover-white" to="/profile">Profile</Link>
                         <Link className="w3-bar-item w3-button w3-hover-white w3-right" style={displayLogout} to="/" onClick={this.logout}>Logout</Link>
                         <Link activeClassName="w3-white" className="w3-bar-item w3-button w3-hover-white w3-right" to={auth.to}>{auth.linkText}</Link>
                     </div>

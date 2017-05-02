@@ -1,4 +1,4 @@
-import { baseUrl, makeApiRequest } from './App.Request';
+import { makeApiRequest } from './App.Request';
 
 export var token = {};
 

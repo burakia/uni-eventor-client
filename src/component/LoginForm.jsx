@@ -15,7 +15,7 @@ class LoginForm extends Component {
 
     submitHandler(e) {
         e.preventDefault();
-        if (this.state.username == '' || this.state.password == '') {
+        if (this.state.username === '' || this.state.password === '') {
             alert('Enter username and password');
         }
         else {
@@ -54,7 +54,7 @@ class LoginForm extends Component {
             width: '50px'
         };
         var errorDisplay = {
-            display: this.state.error == '' ? 'none' : 'block'
+            display: this.state.error === '' ? 'none' : 'block'
         };
         return (
             <div className="w3-section">
