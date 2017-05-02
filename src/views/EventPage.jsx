@@ -63,9 +63,9 @@ class EventPage extends Component {
                                         <span onClick={(e) => this.handleClick('Icerik', this).bind(this)}>
                                             <div className="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">İçerik</div>
                                         </span>
-                                        <a href="javascript:void(0)" onClick={(e) => this.handleClick('Harita', this).bind(this)}>
+                                        <span onClick={(e) => this.handleClick('Harita', this).bind(this)}>
                                             <div className="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Harita</div>
-                                        </a>
+                                        </span>
                                     </div>
                                     <div id="Icerik" ref="city" className="w3-container city">
                                         <h2>Icerik</h2>
