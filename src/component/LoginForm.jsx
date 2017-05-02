@@ -7,6 +7,7 @@ class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            error: '',
             username: '',
             password: ''
         };
@@ -20,8 +21,12 @@ class LoginForm extends Component {
         else {
             AuthModule.login(this.state.username, this.state.password, () => {
                 this.props.router.push('/');
-            }, () => {
-                alert('login failure');
+            }, (error) => {
+                this.setState(prevState => ({
+                    username: prevState.username,
+                    password: prevState.password,
+                    error: 'User doesn\'t exist or username and password does not match'
+                }));
             });
         }
     }
@@ -30,7 +35,8 @@ class LoginForm extends Component {
         var userName = event.target.value;
         this.setState(prevState => ({
             username: userName,
-            password: prevState.password
+            password: prevState.password,
+            error: prevState.error
         }));
     }
     
@@ -38,13 +44,17 @@ class LoginForm extends Component {
         var password = event.target.value;
         this.setState(prevState => ({
             username: prevState.username,
-            password: password
+            password: password,
+            error: prevState.error
         }));
     }
 
     render() {
         var s = {
             width: '50px'
+        };
+        var errorDisplay = {
+            display: this.state.error == '' ? 'none' : 'block'
         };
         return (
             <div className="w3-section">
@@ -53,6 +63,8 @@ class LoginForm extends Component {
                         <h2 className="w3-text-blue-gray">Login</h2>
 
                         <form className="w3-text-blue-gray" onSubmit={this.submitHandler.bind(this)}>
+
+                            <span style={errorDisplay} className="w3-panel w3-red w3-padding">{this.state.error}</span>
 
                             <div className="w3-row w3-section w3-container">
                                 <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>

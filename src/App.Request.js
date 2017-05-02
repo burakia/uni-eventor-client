@@ -1,5 +1,17 @@
 import * as AuthModule from './App.Auth';
 
+const parseError = (param) => {
+    if (typeof (param) == typeof ('')) {
+        return param;
+    }
+    else if (param.error) {
+        return param.error;
+    }
+    else {
+        return null;
+    }
+}
+
 export const baseUrl = 'http://unieventorapi.azurewebsites.net/';
 
 export function makeApiRequest(requestMethd, relUrl, data, onsuccess, onfailure, modifyXhr = null) {
@@ -11,7 +23,13 @@ export function makeApiRequest(requestMethd, relUrl, data, onsuccess, onfailure,
     xhr = AuthModule.authorize(xhr);
     xhr.onload = function () {
         var data = JSON.parse(xhr.responseText);
-        onsuccess(data);
+        var error = parseError(data);
+        if (error) {
+            onfailure(error);
+        }
+        else {
+            onsuccess(data);
+        }
     };
     xhr.onerror = function () {
         var data = JSON.parse(xhr.responseText);
