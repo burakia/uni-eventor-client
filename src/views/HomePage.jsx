@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import SearchBar from '../component/SearchBar.jsx';
 import EventCardSmall from '../component/EventCardSmall.jsx';
 import EventCardMedium from '../component/EventCardMedium.jsx';
+import Map from '../component/Map';
 import '../css/w3.css';
+
 
 class HomePage extends Component {
     render() {

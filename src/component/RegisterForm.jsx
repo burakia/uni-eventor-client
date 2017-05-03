@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { makeApiRequest } from '../App.Request';
 import '../css/w3.css';
-import * as AppRequest from "../App.Request.js"
+//import * as AppRequest from "../App.Request.js"
 
 class RegisterForm extends Component {
     constructor(props) {
