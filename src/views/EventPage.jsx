@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EventCardProfile from '../component/EventCardProfile.jsx';
 import EventCoomingUp from '../component/EventCoomingUp.jsx';
 import EventUsers from '../component/EventUsers.jsx';
-
+import Map from '../component/Map.jsx';
 import '../css/w3.css';
 import '../css/w3-theme-black.css';
 
@@ -78,6 +78,8 @@ class EventPage extends Component {
                                                     Katılımcı Markalar, Koç Bilişim Mercedes Metro UPS</p>
                                     </div>
                                     <div id="Harita" ref="city" className="w3-container city" >
+                                        <br></br>
+                                             <Map width="600" height="500" lang="40.7413232" long="30.3296314" />
                                     </div>
 
                                 </div>

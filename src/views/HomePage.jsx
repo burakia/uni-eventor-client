@@ -14,7 +14,7 @@ class HomePage extends Component {
         };
         return (
             <div>
-                  <Map width="600" height="500" lang="40.7413232" long="30.3296314" />
+                 
                 <div id="slider" className="w3-gray" style={sliderStyle}>
                     <div className="w3-content">
                     <h1 className="w3-xxlarge">Slider</h1>
