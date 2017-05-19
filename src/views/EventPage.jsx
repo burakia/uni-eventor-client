@@ -5,9 +5,64 @@ import EventUsers from '../component/EventUsers.jsx';
 import Map from '../component/Map.jsx';
 import '../css/w3.css';
 import '../css/w3-theme-black.css';
+import axios from 'axios';
 
 class EventPage extends Component {
+ constructor(props) {
+        super(props);
+        this.state={
+            CurrentEvent : {
+               
+                Communities :[], 
+                Content : [] , 
+                DateCreated : '' , 
+                EventEndDate : '' , 
+                EventId : '' , 
+                EventName : '' , 
+                EventStartDate : '' , 
+                EventType : [] , 
+                FkContentId : '' , 
+                FkEventTypeId :'' , 
+                FkLocation : '' , 
+                Interests : [] , 
+                LastUpdated : '' , 
+                Location : [] , 
+                MaxSeats : '' , 
+                PosterUrl : '' 
+                
+                    }
+        }
 
+         var CurrentEvent=  {
+               
+        Communities :[], 
+        Content : [] , 
+        DateCreated : '' , 
+        EventEndDate : '' , 
+        EventId : '' , 
+        EventName : '' , 
+        EventStartDate : '' , 
+        EventType : [] , 
+        FkContentId : '' , 
+        FkEventTypeId :'' , 
+        FkLocation : '' , 
+        Interests : [] , 
+        LastUpdated : '' , 
+        Location : [] , 
+        MaxSeats : '' , 
+        PosterUrl : '' 
+        
+            }
+          axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
+              debugger;
+              this.state.CurrentEvent  = response.data;
+              CurrentEvent=response.data;
+               alert(this.state.CurrentEvent.PosterUrl);
+            }).catch((error)=>{
+                console.log(error);
+            });
+           
+    }
     handleClick = (e, cityName) => {
         // e burada click icin bildigimiz event nesnesi
         var i, x, tablinks;
@@ -25,11 +80,11 @@ class EventPage extends Component {
     }
 
     render() {
-
+        let {imagePreviewUrl} = this.state.CurrentEvent.PosterUrl;
         return (
             <div className="w3-row">
                 <div className="w3-col m3">
-                    <EventCardProfile poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
+                    <EventCardProfile poster={imagePreviewUrl}
                         title="Event S 1" id="s1" />
                     <div className="w3-card-2 w3-round">
                         Accordion
