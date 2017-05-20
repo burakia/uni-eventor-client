@@ -18,7 +18,9 @@ class EventCardProfile extends Component {
                     </p>
                     
                     <p><i className="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Sakarya Üniversitesi </p>
-                    <p><i className="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Bilgisayar Topluluğu</p>
+                    <p><i className="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{this.props.CommunityName.map((item)=>{return item.CommunityName})}</p>
+                    <p>Etkinlik Başlangıç<br></br><label><i className="fa fa-calendar-o"></i> {this.props.EventStartDate}</label></p>
+                    <p>Etkinlik Bitiş<br></br><label><i className="fa fa-calendar-o"></i> {this.props.EventEndDate}</label></p>
                 </div>
            </div>
             

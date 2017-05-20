@@ -10,9 +10,23 @@ import axios from 'axios';
 class EventPage extends Component {
  constructor(props) {
         super(props);
+        axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
+              debugger;
+               this.setState({CurrentEvent:response.data});
+               alert(this.state.CurrentEvent.PosterUrl);
+            }).catch((error)=>{
+                console.log(error);
+            });
+        // Katılan Kullanıcıları Get Et
+        // axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
+        //       debugger;
+        //        this.setState({EventUsers:response.data});
+        //        alert(this.state.EventUsers.UserName);
+        //     }).catch((error)=>{
+        //         console.log(error);
+        //     });
         this.state={
             CurrentEvent : {
-               
                 Communities :[], 
                 Content : [] , 
                 DateCreated : '' , 
@@ -30,37 +44,10 @@ class EventPage extends Component {
                 MaxSeats : '' , 
                 PosterUrl : '' 
                 
-                    }
+                    },
+                EventUsers : []
         }
 
-         var CurrentEvent=  {
-               
-        Communities :[], 
-        Content : [] , 
-        DateCreated : '' , 
-        EventEndDate : '' , 
-        EventId : '' , 
-        EventName : '' , 
-        EventStartDate : '' , 
-        EventType : [] , 
-        FkContentId : '' , 
-        FkEventTypeId :'' , 
-        FkLocation : '' , 
-        Interests : [] , 
-        LastUpdated : '' , 
-        Location : [] , 
-        MaxSeats : '' , 
-        PosterUrl : '' 
-        
-            }
-          axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
-              debugger;
-              this.state.CurrentEvent  = response.data;
-              CurrentEvent=response.data;
-               alert(this.state.CurrentEvent.PosterUrl);
-            }).catch((error)=>{
-                console.log(error);
-            });
            
     }
     handleClick = (e, cityName) => {
@@ -80,12 +67,14 @@ class EventPage extends Component {
     }
 
     render() {
-        let {imagePreviewUrl} = this.state.CurrentEvent.PosterUrl;
+        
         return (
             <div className="w3-row">
                 <div className="w3-col m3">
-                    <EventCardProfile poster={imagePreviewUrl}
-                        title="Event S 1" id="s1" />
+                    <EventCardProfile poster={this.state.CurrentEvent.PosterUrl}
+                        title="Event S 1" id="s1" EventStartDate={this.state.CurrentEvent.EventStartDate} 
+                        EventEndDate={this.state.CurrentEvent.EventEndDate}
+                        CommunityName={this.state.CurrentEvent.Communities}/>
                     <div className="w3-card-2 w3-round">
                         Accordion
                     </div>
@@ -99,10 +88,12 @@ class EventPage extends Component {
                             </div>
                             <p>
 
-                                <span className="w3-tag w3-small w3-theme-d5">@interests.Title</span>
-
-                                <span className="w3-tag w3-small @theme">@Model.Interests.ElementAt(i).Title</span>
-
+                                    {
+                                        this.state.CurrentEvent.Interests.map((item)=> {
+                                            return <span className="w3-tag w3-small w3-theme-l4 ">{item.InterestName}</span>
+                                            
+                                        })
+                                    }
                             </p>
                         </div>
                     </div>
@@ -112,8 +103,9 @@ class EventPage extends Component {
                         <div className="w3-col m12">
                             <div className="w3-card-2 w3-round w3-white">
                                 <div className="w3-container w3-padding">
-
-                                    <h4 >Saü Bilişim Günleri</h4>
+                                    <div className="w3-row">
+                                        <h4 >{this.state.CurrentEvent.EventName}</h4>
+                                    </div>
                                     <div className="w3-row">
                                         <span onClick={(e) => this.handleClick('Icerik', this).bind(this)}>
                                             <div className="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">İçerik</div>
@@ -123,7 +115,7 @@ class EventPage extends Component {
                                         </span>
                                     </div>
                                     <div id="Icerik" ref="city" className="w3-container city">
-                                        <h2>Icerik</h2>
+                                        <h6>{this.state.CurrentEvent.EventType.EventTypeName}</h6>
                                         <p>Global markalar senin için kampüse geliyor ve markalaşmayı anlatıyor! Konu başlıklarımız neler?
                                                     ? Globalleşen dünyada değeri gitgide artan ?markalaşmayı? anlamak.
                                                     ? Markalaşan başarılı şirketlerin hikayelerini dinlemek, ilham almak.
@@ -134,7 +126,7 @@ class EventPage extends Component {
                                     </div>
                                     <div id="Harita" ref="city" className="w3-container city" >
                                         <br></br>
-                                             <Map width="600" height="500" lang="40.7413232" long="30.3296314" />
+                                             <Map width="600" height="500" lang={this.state.CurrentEvent.Location.Latitude} long={this.state.CurrentEvent.Location.Longitude} />
                                     </div>
 
                                 </div>
