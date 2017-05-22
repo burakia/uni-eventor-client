@@ -90,8 +90,6 @@ class EventsPage extends Component {
                         </select>
                     </div>
 
-
-
                     <div className="w3-container">
 
                         <label><i className="fa fa-calendar-o"></i> Etkinlik Tarih Aralığı</label>

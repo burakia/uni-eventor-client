@@ -10,8 +10,10 @@ import axios from 'axios';
 class EventPage extends Component {
  constructor(props) {
         super(props);
-        axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
-              debugger;
+
+        let baseUrl='http://unieventorapi.azurewebsites.net/api/EventApi/';
+        let url=baseUrl+this.props.EventId;
+        axios.get(url).then((response)=>{    
                this.setState({CurrentEvent:response.data});
                alert(this.state.CurrentEvent.PosterUrl);
             }).catch((error)=>{
@@ -65,7 +67,7 @@ class EventPage extends Component {
         return (
             <div className="w3-row">
                 <div className="w3-col m3">
-                    <EventCardProfile poster={this.state.CurrentEvent.PosterUrl}
+                    <EventCardProfile poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
                         title="Event S 1" id="s1" EventStartDate={this.state.CurrentEvent.EventStartDate} 
                         EventEndDate={this.state.CurrentEvent.EventEndDate}
                         CommunityName={this.state.CurrentEvent.Communities}/>
