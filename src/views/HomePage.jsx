@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import SearchBar from '../component/SearchBar.jsx';
 import EventCardSmall from '../component/EventCardSmall.jsx';
 import EventCardMedium from '../component/EventCardMedium.jsx';
-import Map from '../component/Map';
 import '../css/w3.css';
 
 
 class HomePage extends Component {
+
+
     render() {
         var sliderStyle = {
             width: '%100',
@@ -24,7 +25,7 @@ class HomePage extends Component {
                 <br />
                 
                 <div className="w3-content">
-                    <div className="w3-container"><h2>Event Card Small</h2></div>
+                    <div className="w3-container"><h2>İlginizi Çekebilecek Etkinlikler</h2></div>
                     
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
                                     title="Event S 1" id="s1" />
@@ -34,7 +35,7 @@ class HomePage extends Component {
                                     title="Event S 3" id="s3" />
                     <EventCardSmall poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
                                     title="Event S 4" id="s4" />
-                    <div className="w3-container"><h2>Event Card Medium</h2></div>
+                    <div className="w3-container"><h2>Öne Çıkan Etkinlikler</h2></div>
                     <EventCardMedium poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"
                                     title="Event M 1" id="s1" />
                     <EventCardMedium poster="https://about.canva.com/wp-content/uploads/sites/3/2015/01/concert_poster.png"

@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { makeApiRequest } from '../App.Request';
 import '../css/w3.css';
+import axios from 'axios';
 //import * as AppRequest from "../App.Request.js"
 
 class RegisterForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            universities: [],
+            faculties: [],
+            departments: [],
             userName: '',
             email: '',
             password: '',
             confirmPassword: '',
             name: '',
             surname: '',
-            departmentId: -1
+            departmentId: ''
         };
     }
 
@@ -27,88 +31,79 @@ class RegisterForm extends Component {
         });
     }
 
+    componentDidMount() {
+
+        axios.get('http://unieventorapi.azurewebsites.net/api/UniversityApi').then((response) => {
+            this.setState({ universities: response.data });
+        }).catch((error) => {
+            console.log(error);
+        });
+        axios.get('http://unieventorapi.azurewebsites.net/api/FacultyApi').then((response) => {
+            this.setState({ faculties: response.data });
+        }).catch((error) => {
+            console.log(error);
+        });
+        axios.get('http://localhost:60556/api/DepartmentApi').then((response) => {
+            this.setState({ departments: response.data });
+        }).catch((error) => {
+            console.log(error);
+        });
+
+
+    }
+
+ handleUniversityIdChange(event) {
+        var UniversityId = event.target.value;
+         axios.get('http://unieventorapi.azurewebsites.net/api/FacultyApi?UniId='+UniversityId).then((response)=>{
+                this.setState({faculties:response.data});
+            }).catch((error)=>{
+                console.log(error);
+            });
+    }
+    handleFacultyIdChange(event) {
+        debugger;
+        var FacultyId = event.target.value;
+         axios.get('http://localhost:60556/api/DepartmentApi?UniId=1&FacId='+FacultyId).then((response)=>{
+             debugger;
+                this.setState({departments:response.data});
+            }).catch((error)=>{
+                console.log(error);
+            });
+    }
     usernameChange(event) {
-        this.setState(prevState => ({
-            userName: event.target.value,
-            email: prevState.email,
-            password: prevState.password,
-            confirmPassword: prevState.confirmPassword,
-            name: prevState.name,
-            surname: prevState.surname,
-            departmentId: prevState.departmentId
-        }));
+     var username = event.target.value;
+        this.setState({ username });
     }
 
     emailChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: event.target.value,
-            password: prevState.password,
-            confirmPassword: prevState.confirmPassword,
-            name: prevState.name,
-            surname: prevState.surname,
-            departmentId: prevState.departmentId
-        }));
+        var email = event.target.value;
+        this.setState({ email });
     }
 
     passwordChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: prevState.email,
-            password: event.target.value,
-            confirmPassword: prevState.confirmPassword,
-            name: prevState.name,
-            surname: prevState.surname,
-            departmentId: prevState.departmentId
-        }));
+             var password = event.target.value;
+        this.setState({ password });
     }
 
     confirmPasswordChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: prevState.email,
-            password: prevState.password,
-            confirmPassword: event.target.value,
-            name: prevState.name,
-            surname: prevState.surname,
-            departmentId: prevState.departmentId
-        }));
+               var confirmPassword = event.target.value;
+        this.setState({ confirmPassword });
     }
 
     nameChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: prevState.email,
-            password: prevState.password,
-            confirmPassword: prevState.confirmPassword,
-            name: event.target.value,
-            surname: prevState.surname,
-            departmentId: prevState.departmentId
-        }));
+              var name = event.target.value;
+        this.setState({ name });
+       
     }
 
     surnameChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: prevState.email,
-            password: prevState.password,
-            confirmPassword: prevState.confirmPassword,
-            name: prevState.name,
-            surname: event.target.value,
-            departmentId: prevState.departmentId
-        }));
+        var surname = event.target.value;
+        this.setState({ surname });
     }
 
     departmentChange(event) {
-        this.setState(prevState => ({
-            userName: prevState.userName,
-            email: prevState.email,
-            password: prevState.password,
-            confirmPassword: prevState.confirmPassword,
-            name: prevState.name,
-            surname: prevState.surname,
-            departmentId: event.target.value
-        }));
+        var departmentId = event.target.value;
+        this.setState({ departmentId });
     }
 
     render() {
@@ -153,21 +148,6 @@ class RegisterForm extends Component {
                                 </div>
                             </div>
 
-                            <div className="w3-row w3-section">
-                                <div className="w3-half w3-container">
-                                    <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
-                                    <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="password" type="text" placeholder="Password" onChange={this.passwordChange.bind(this)} />
-                                    </div>
-                                </div>
-
-                                <div className="w3-half w3-container">
-                                    <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-key"></i></div>
-                                    <div className="w3-rest">
-                                        <input className="w3-input w3-border" name="confirmPassword" type="text" placeholder="Confirm Password" onChange={this.confirmPasswordChange.bind(this)} />
-                                    </div>
-                                </div>
-                            </div>
 
                             <div className="w3-row w3-section">
                                 <div className="w3-half w3-container">
@@ -185,16 +165,38 @@ class RegisterForm extends Component {
                                 </div>
                             </div>
 
-                            <div className="w3-row w3-section w3-container">
-                                <div className="w3-col" style={s}><i className="w3-xxlarge fa fa-user"></i></div>
-                                <div className="w3-rest">
-                                    <select className="w3-select w3-border w3-text-blue-gray" name="Department">
-                                        <option value="" disabled selected>Choose your department</option>
-                                        <option value="1">Bilgisayar Muhendisligi Bolumu</option>
-                                        <option value="2">Bilgisayar Muhendisligi Bolumu</option>
-                                    </select>
-                                </div>
+                        
+                             <div className="w3-half">
+                            <div className="w3-container">
+                                <select className="w3-select w3-border w3-padding" name="option"  onChange={this.handleUniversityIdChange.bind(this)}>
+                                <option value="" disabled defaultValue>Üniversite Seç</option>
+                                {this.state.universities.map((item=>{
+                                    return <option key={item.UniversityId} value={item.UniversityId}>{item.UniversityName}</option>
+                                }))}
+                               
+                            </select>
                             </div>
+                        </div>
+                        <div className="w3-half">
+                            <div className="w3-container">
+                                <select className="w3-select w3-border w3-padding" name="option" onChange={this.handleFacultyIdChange.bind(this)} >
+                                 <option value="" defaultValue>Fakülte Seç</option>
+                                {this.state.faculties.map((item)=>{
+                                    return <option key={item.FacultyId} value={item.FacultyId}>{item.FkUniversityId} - {item.FacultyName}</option>
+                                })}
+                            </select>
+                            </div>
+                        </div>
+                        <div className="w3-half">
+                            <div className="w3-container">
+                                <select className="w3-select w3-border w3-padding" name="option" >
+                                 <option value="" disabled defaultValue>Bölüm Seç</option>
+                                {this.state.departments.map((item)=>{
+                                    return <option key={item.DepartmentId} value={item.DepartmentId}> {item.DepartmentName}</option>
+                                })}
+                            </select>
+                            </div>
+                        </div>
 
                             <p className="w3-center">
                                 <button className="w3-btn w3-section w3-blue-gray w3-ripple"> Register </button>
