@@ -17,14 +17,6 @@ class EventPage extends Component {
             }).catch((error)=>{
                 console.log(error);
             });
-        // Katılan Kullanıcıları Get Et
-        // axios.get('http://unieventorapi.azurewebsites.net/api/EventApi/1').then((response)=>{
-        //       debugger;
-        //        this.setState({EventUsers:response.data});
-        //        alert(this.state.EventUsers.UserName);
-        //     }).catch((error)=>{
-        //         console.log(error);
-        //     });
         this.state={
             CurrentEvent : {
                 Communities :[], 
@@ -67,7 +59,9 @@ class EventPage extends Component {
     }
 
     render() {
-        
+          var displaynone={
+          display : 'none'
+      }
         return (
             <div className="w3-row">
                 <div className="w3-col m3">
@@ -124,7 +118,7 @@ class EventPage extends Component {
                                                     ? Nasıl bir kariyer haritası izleyeceğini bilemeyen öğrencilere ilham vermek.
                                                     Katılımcı Markalar, Koç Bilişim Mercedes Metro UPS</p>
                                     </div>
-                                    <div id="Harita" ref="city" className="w3-container city" >
+                                    <div id="Harita" ref="city" className="w3-container city" style={displaynone}>
                                         <br></br>
                                              <Map width="600" height="500" lang={this.state.CurrentEvent.Location.Latitude} long={this.state.CurrentEvent.Location.Longitude} />
                                     </div>
